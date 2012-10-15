@@ -26,8 +26,9 @@ end
 
 def ss_s2_conversion(s)
   lambda do |pair|
-    pair[1].call(pair[0]).times do
-      pair = s.call(pair)
+    (m, f) = pair
+    f.call(m).times do
+      (m, f) = pair = s.call(pair)
     end
     pair
   end
