@@ -9,23 +9,47 @@ def ack_like(m, n, f)
   end
 end
 
-def func_s_conversion(f)
+def s_func_conversion(f)
   lambda do |x|
     ack_like(x, x, f)
   end
 end
 
 def s_conversion(pair)
-  num = pair[0]
-  func = pair[1]
+  m = pair[0]
+  f = pair[1]
 
-  new_func = func_s_conversion(func)
-  num = new_func.call(num)
-  [num, new_func]
+  g = s_func_conversion(f)
+  n = g.call(m)
+
+  [n, g]
 end
 
-pair = s_conversion([1, lambda {|x| x + 1}])
-pair = s_conversion(pair)
+def ss_s2_conversion(s)
+  lambda do |pair|
+    pair[1].call(pair[0]).times do
+      pair = s.call(pair)
+    end
+    pair
+  end
+end
 
-p pair[0]
+def ss_conversion(trio)
+  m = trio[0]
+  f = trio[1]
+  s = trio[2]
+
+  s2 = ss_s2_conversion(s)
+  (n, g) = s2.call([m, f])
+
+  [n, g, s2]
+end
+
+trio = [3, lambda {|x| x + 1}, lambda{|pair| s_conversion(pair)}]
+
+63.times do
+  trio = ss_conversion(trio)
+end
+
+puts "#{trio[0]}\n"
 
