@@ -16,8 +16,7 @@ def s_func_conversion(f)
 end
 
 def s_conversion(pair)
-  m = pair[0]
-  f = pair[1]
+  (m, f) = pair
 
   g = s_func_conversion(f)
   n = g.call(m)
@@ -35,9 +34,7 @@ def ss_s2_conversion(s)
 end
 
 def ss_conversion(trio)
-  m = trio[0]
-  f = trio[1]
-  s = trio[2]
+  (m, f, s) = trio
 
   s2 = ss_s2_conversion(s)
   (n, g) = s2.call([m, f])
