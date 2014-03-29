@@ -19,9 +19,8 @@ def s_conversion(pair)
   (m, f) = pair
 
   g = s_func_conversion(f)
-  n = g.call(m)
 
-  [n, g]
+  [g.call(m), g]
 end
 
 def ss_s2_conversion(s)
