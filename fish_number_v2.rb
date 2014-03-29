@@ -51,7 +51,7 @@ def ss_conversion(trio)
   s2_power = ss_s2_power_conversion(s)
   (q_x, g) = s2_power.call([m, f])
 
-  [n, g, s2_power]
+  [n, g, s2]
 end
 
 trio = [3, lambda {|x| x + 1}, lambda{|pair| s_conversion(pair)}]
